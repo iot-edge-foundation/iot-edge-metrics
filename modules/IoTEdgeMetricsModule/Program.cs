@@ -191,7 +191,7 @@ namespace IoTEdgeMetricsModule
 
                     Console.WriteLine($"edgehub_messages_received_total from module '{moduleName}': {count}");
 
-                    metrics.Modules.Add(new Module{Name = moduleName, MessagesRecievedCount = count});
+                    metrics.Modules.Add( moduleName, new Module{MessagesRecievedCount = count});
                 }
 
                 string patternSentTotalPerModule = @"edgehub_messages_sent_total{[\.a-zA-Z""=_,0-9\/-]*,from=""([a-zA-Z0-9\/]*)"",to=""upstream""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
@@ -206,11 +206,9 @@ namespace IoTEdgeMetricsModule
 
                     Console.WriteLine($"edgehub_messages_sent_total to UPSTREAM: '{m.Groups[1]}': {m.Groups[2]}");
 
-                    var module = metrics.Modules.FirstOrDefault(x => x.Name == moduleName);
-
-                    if (module != null)
+                    if (metrics.Modules.ContainsKey(moduleName))
                     {
-                        module.MessagesSentCount = count;
+                        metrics.Modules[moduleName].MessagesSentCount = count;
                     }
                 }
             }
@@ -236,7 +234,7 @@ namespace IoTEdgeMetricsModule
 
                     Console.WriteLine($"edgeAgent_available_disk_space_bytes - Disk size left for Disk: '{diskName}': {size}");
 
-                    metrics.Disks.Add(new Disk{Name = diskName, Free = size });
+                    metrics.Disks.Add(diskName, new Disk{Free = size });
                 }
 
                 string patternDiskSizeTotal = @"edgeAgent_total_disk_space_bytes{[\.a-zA-Z""=_,0-9\/-]*disk_name=""([a-z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
@@ -249,10 +247,9 @@ namespace IoTEdgeMetricsModule
 
                     Console.WriteLine($"edgeAgent_total_disk_space_bytes - total Disk size for Disk: '{diskName}': {size}");
 
-                    var disk = metrics.Disks.FirstOrDefault(x => x.Name == diskName);
-
-                    if (disk != null)
+                    if (metrics.Disks.ContainsKey(diskName))
                     {
+                        var disk = metrics.Disks[diskName];
                         disk.Size = size;
                         disk.Used = disk.Size - disk.Free;
                     }
@@ -276,11 +273,9 @@ namespace IoTEdgeMetricsModule
                     var perc = Convert.ToDouble(m.Groups[2].Value);
                     Console.WriteLine($"edgeAgent_used_cpu_percent - CPU USAGE for module: '{moduleName}': {perc:N2} (Quantile 0.99)");
 
-                    var module = metrics.Modules.FirstOrDefault(x => x.Name == moduleName);
-                
-                    if (module != null)
+                    if (metrics.Modules.ContainsKey(moduleName))
                     {
-                        module.Cpu099 = perc;
+                        metrics.Modules[moduleName].Cpu099 = Math.Round(perc, 2, MidpointRounding.AwayFromZero);
                     }
                 }
             }
@@ -402,23 +397,23 @@ namespace IoTEdgeMetricsModule
         public Metrics()
         {
             Timestamp = DateTime.UtcNow;
-            Disks = new List<Disk>();
-            Modules = new List<Module>();
+            Disks = new Dictionary<string, Disk>();
+            Modules = new Dictionary<string, Module>();
         }
 
         public DateTime Timestamp { get; set; }
 
         public int Uptime { get; set; }
 
-        public List<Disk> Disks {get; private set;}
+        public Dictionary<string, Disk> Disks {get; private set;}
 
-        public List<Module> Modules {get; private set;}
+        public Dictionary<string, Module> Modules {get; private set;}
 
         public int MessagesSentCount 
         { 
             get
             {
-                return Modules.Sum(x => x.MessagesSentCount);
+                return Modules.Sum(x => x.Value.MessagesSentCount);
             } 
         }
 
@@ -426,15 +421,13 @@ namespace IoTEdgeMetricsModule
         { 
             get
             {
-                return Modules.Sum(x => x.MessagesRecievedCount);
+                return Modules.Sum(x => x.Value.MessagesRecievedCount);
             } 
         }       
     }
 
     public class Disk
     {
-        public string Name { get; set; }
-
         public double Size { get; set; }
 
         public double Used { get; set; }
@@ -444,8 +437,6 @@ namespace IoTEdgeMetricsModule
 
     public class Module
     {
-        public string Name { get; set; }
-
         public double Cpu099 { get; set; }
 
         public int MessagesSentCount { get; set; }

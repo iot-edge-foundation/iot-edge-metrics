@@ -1,40 +1,35 @@
 {
-    "Timestamp": "2020-12-22T17:10:32.2379244Z",
-    "Uptime": 63,
-    "Disks": [
-        {
-            "Name": "sda2",
+    "Timestamp": "2020-12-22T18:08:02.8364884Z",
+    "Uptime": 121,
+    "Disks": {
+        "sda2": {
             "Size": 60761956,
-            "Used": 31196240,
-            "Free": 29565716
+            "Used": 31205636,
+            "Free": 29556320
         },
-        {
-            "Name": "sda1",
+        "sda1": {
             "Size": 523248,
             "Used": 6268,
             "Free": 516980
         }
-    ],
-    "Modules": [
-        {
-            "Name": "hb2",
-            "Cpu099": 0.017784055065234075,
-            "MessagesSentCount": 802,
-            "MessagesRecievedCount": 802
+    },
+    "Modules": {
+        "hb2": {
+            "Cpu099": 0.02,
+            "MessagesSentCount": 1491,
+            "MessagesRecievedCount": 1491
         },
-        {
-            "Name": "hb",
-            "Cpu099": 0.017890155329405463,
-            "MessagesSentCount": 801,
-            "MessagesRecievedCount": 801
+        "hb": {
+            "Cpu099": 0.02,
+            "MessagesSentCount": 1490,
+            "MessagesRecievedCount": 1490
         },
-        {
-            "Name": "metrics",
-            "Cpu099": 0.04907476809439302,
-            "MessagesSentCount": 1,
-            "MessagesRecievedCount": 1
+        "metrics": {
+            "Cpu099": 0.05,
+            "MessagesSentCount": 345,
+            "MessagesRecievedCount": 345
         }
-    ],
-    "MessagesSentCount": 1604,
-    "MessagesRecievedCount": 1604
+    },
+    "MessagesSentCount": 3326,
+    "MessagesRecievedCount": 3326
 }
