@@ -1,0 +1,167 @@
+# HELP edgeAgent_total_disk_write_bytes The amount of bytes written to disk
+# TYPE edgeAgent_total_disk_write_bytes gauge
+edgeAgent_total_disk_write_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 0
+edgeAgent_total_disk_write_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 0
+edgeAgent_total_disk_write_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="False"} 65551
+edgeAgent_total_disk_write_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="False"} 90134
+edgeAgent_total_disk_write_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 0
+# HELP edgeAgent_total_time_expected_running_seconds The amount of time the module was specified in the deployment
+# TYPE edgeAgent_total_time_expected_running_seconds gauge
+edgeAgent_total_time_expected_running_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 2379.3785409
+edgeAgent_total_time_expected_running_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 4283.066775
+edgeAgent_total_time_expected_running_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True"} 4283.0691897
+edgeAgent_total_time_expected_running_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True"} 4283.0666389
+edgeAgent_total_time_expected_running_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 4283.0666285
+# HELP edgeAgent_used_cpu_percent Percent of cpu used by all processes
+# TYPE edgeAgent_used_cpu_percent summary
+edgeAgent_used_cpu_percent_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 0.3402354231357552
+edgeAgent_used_cpu_percent_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 7
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False",quantile="0.1"} 0.017110141139317383
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False",quantile="0.5"} 0.020634558396022448
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False",quantile="0.9"} 0.022855767368813045
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False",quantile="0.99"} 0.022855767368813045
+edgeAgent_used_cpu_percent_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 0.09160983191776531
+edgeAgent_used_cpu_percent_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 13
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False",quantile="0.1"} 0.002474039824119586
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False",quantile="0.5"} 0.0027578669992225965
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False",quantile="0.9"} 0.018897111603795116
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False",quantile="0.99"} 0.018897111603795116
+edgeAgent_used_cpu_percent_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="host",ms_telemetry="True"} 18.49474796652794
+edgeAgent_used_cpu_percent_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="host",ms_telemetry="True"} 14
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="host",ms_telemetry="True",quantile="0.1"} 0.3194679915904999
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="host",ms_telemetry="True",quantile="0.5"} 0.43958714604377747
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="host",ms_telemetry="True",quantile="0.9"} 0.890717089176178
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="host",ms_telemetry="True",quantile="0.99"} 1.1839015483856201
+edgeAgent_used_cpu_percent_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True"} 1.8278461768606526
+edgeAgent_used_cpu_percent_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True"} 13
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True",quantile="0.1"} 0.11061263689782479
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True",quantile="0.5"} 0.12042965397167313
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True",quantile="0.9"} 0.13078129480330258
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True",quantile="0.99"} 0.13078129480330258
+edgeAgent_used_cpu_percent_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True"} 1.412482505017897
+edgeAgent_used_cpu_percent_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True"} 13
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True",quantile="0.1"} 0.04698104607660143
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True",quantile="0.5"} 0.0869995889645567
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True",quantile="0.9"} 0.1865974716590011
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True",quantile="0.99"} 0.1865974716590011
+edgeAgent_used_cpu_percent_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 0.089694159626024
+edgeAgent_used_cpu_percent_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 13
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False",quantile="0.1"} 0.0024346015191021426
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False",quantile="0.5"} 0.002897806426535372
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False",quantile="0.9"} 0.012508903524501973
+edgeAgent_used_cpu_percent{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False",quantile="0.99"} 0.012508903524501973
+# HELP edgeAgent_iotedged_uptime_seconds How long iotedged has been running
+# TYPE edgeAgent_iotedged_uptime_seconds gauge
+edgeAgent_iotedged_uptime_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",ms_telemetry="True"} 4849
+# HELP edgeAgent_total_network_out_bytes The amount of bytes sent to network
+# TYPE edgeAgent_total_network_out_bytes gauge
+edgeAgent_total_network_out_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 141180
+edgeAgent_total_network_out_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 21252
+edgeAgent_total_network_out_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="False"} 1694781
+edgeAgent_total_network_out_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="False"} 56610
+edgeAgent_total_network_out_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 21203
+# HELP edgeAgent_created_pids_total The number of processes or threads the container has created
+# TYPE edgeAgent_created_pids_total gauge
+edgeAgent_created_pids_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 20
+edgeAgent_created_pids_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 17
+edgeAgent_created_pids_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="False"} 34
+edgeAgent_created_pids_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="False"} 17
+edgeAgent_created_pids_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 17
+# HELP edgeAgent_iothub_syncs_total The amount of times edgeAgent attempted to sync with iotHub, both successful and unsuccessful
+# TYPE edgeAgent_iothub_syncs_total counter
+edgeAgent_iothub_syncs_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",ms_telemetry="True"} 8
+# HELP edgeAgent_deployment_time_seconds The amount of time it took to complete a new deployment
+# TYPE edgeAgent_deployment_time_seconds summary
+edgeAgent_deployment_time_seconds_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",ms_telemetry="True"} 26.6377241
+edgeAgent_deployment_time_seconds_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",ms_telemetry="True"} 3
+edgeAgent_deployment_time_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",ms_telemetry="True",quantile="0.1"} 5.7118135
+edgeAgent_deployment_time_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",ms_telemetry="True",quantile="0.5"} 5.7118135
+edgeAgent_deployment_time_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",ms_telemetry="True",quantile="0.9"} 5.7118135
+edgeAgent_deployment_time_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",ms_telemetry="True",quantile="0.99"} 5.7118135
+# HELP edgeAgent_command_latency_seconds Command sent to module
+# TYPE edgeAgent_command_latency_seconds summary
+edgeAgent_command_latency_seconds_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="create",ms_telemetry="True"} 0.0023003
+edgeAgent_command_latency_seconds_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="create",ms_telemetry="True"} 1
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="create",ms_telemetry="True",quantile="0.1"} NaN
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="create",ms_telemetry="True",quantile="0.5"} NaN
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="create",ms_telemetry="True",quantile="0.9"} NaN
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="create",ms_telemetry="True",quantile="0.99"} NaN
+edgeAgent_command_latency_seconds_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="start",ms_telemetry="True"} 0.0009855
+edgeAgent_command_latency_seconds_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="start",ms_telemetry="True"} 3
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="start",ms_telemetry="True",quantile="0.1"} 1.72E-05
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="start",ms_telemetry="True",quantile="0.5"} 1.72E-05
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="start",ms_telemetry="True",quantile="0.9"} 1.72E-05
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="start",ms_telemetry="True",quantile="0.99"} 1.72E-05
+edgeAgent_command_latency_seconds_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="update",ms_telemetry="True"} 0.0396845
+edgeAgent_command_latency_seconds_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="update",ms_telemetry="True"} 2
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="update",ms_telemetry="True",quantile="0.1"} 0.0008392
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="update",ms_telemetry="True",quantile="0.5"} 0.0008392
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="update",ms_telemetry="True",quantile="0.9"} 0.0008392
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="update",ms_telemetry="True",quantile="0.99"} 0.0008392
+edgeAgent_command_latency_seconds_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="wrap",ms_telemetry="True"} 0.00027289999999999997
+edgeAgent_command_latency_seconds_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="wrap",ms_telemetry="True"} 5
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="wrap",ms_telemetry="True",quantile="0.1"} 6.4E-06
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="wrap",ms_telemetry="True",quantile="0.5"} 6.4E-06
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="wrap",ms_telemetry="True",quantile="0.9"} 6.4E-06
+edgeAgent_command_latency_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",command="wrap",ms_telemetry="True",quantile="0.99"} 6.4E-06
+# HELP edgeAgent_metadata General metadata about the device. The value is always 0, information is encoded in the tags.
+# TYPE edgeAgent_metadata gauge
+edgeAgent_metadata{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",edge_agent_version="1.0.10.35691904 (c6350db898b2bd7abe1d50a340a1b1a91e72127d)",experimental_features="{\"Enabled\":false,\"DisableCloudSubscriptions\":false}",host_information="{\"OperatingSystemType\":\"linux\",\"Architecture\":\"x86_64\",\"Version\":\"1.0.10.4\",\"Provisioning\":{\"Type\":\"manual.device_connection_string\",\"DynamicReprovisioning\":false},\"ServerVersion\":\"19.03.14+azure\",\"KernelVersion\":\"5.4.0-58-generic\",\"OperatingSystem\":\"Ubuntu 18.04.5 LTS\",\"NumCpus\":4,\"Virtualized\":\"no\"}",ms_telemetry="True"} 0
+# HELP edgeAgent_host_uptime_seconds How long the host has been on
+# TYPE edgeAgent_host_uptime_seconds gauge
+edgeAgent_host_uptime_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",ms_telemetry="True"} 4869
+# HELP edgeAgent_module_start_total Command sent to module
+# TYPE edgeAgent_module_start_total counter
+edgeAgent_module_start_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",module_version="1.0",ms_telemetry="True"} 4
+edgeAgent_module_start_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",module_version="",ms_telemetry="True"} 2
+# HELP edgeAgent_used_memory_bytes Amount of RAM used by all processes
+# TYPE edgeAgent_used_memory_bytes gauge
+edgeAgent_used_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 27029504
+edgeAgent_used_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 29884416
+edgeAgent_used_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="host",ms_telemetry="True"} 1489888000
+edgeAgent_used_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True"} 49610752
+edgeAgent_used_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True"} 124973056
+edgeAgent_used_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 32092160
+# HELP edgeAgent_total_memory_bytes RAM available
+# TYPE edgeAgent_total_memory_bytes gauge
+edgeAgent_total_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 8233828352
+edgeAgent_total_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 8233828352
+edgeAgent_total_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="host",ms_telemetry="True"} 8040848000
+edgeAgent_total_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True"} 8233828352
+edgeAgent_total_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True"} 8233828352
+edgeAgent_total_memory_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 8233828352
+# HELP edgeAgent_available_disk_space_bytes Amount of space left on the disk
+# TYPE edgeAgent_available_disk_space_bytes gauge
+edgeAgent_available_disk_space_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",disk_name="sda2",disk_filesystem="ext4",disk_filetype="HDD",ms_telemetry="True"} 30293024768
+edgeAgent_available_disk_space_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",disk_name="sda1",disk_filesystem="vfat",disk_filetype="HDD",ms_telemetry="True"} 529387520
+# HELP edgeAgent_total_disk_space_bytes Size of the disk
+# TYPE edgeAgent_total_disk_space_bytes gauge
+edgeAgent_total_disk_space_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",disk_name="sda2",disk_filesystem="ext4",disk_filetype="HDD",ms_telemetry="True"} 62220242944
+edgeAgent_total_disk_space_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",disk_name="sda1",disk_filesystem="vfat",disk_filetype="HDD",ms_telemetry="True"} 535805952
+# HELP edgeAgent_module_stop_total Command sent to module
+# TYPE edgeAgent_module_stop_total counter
+edgeAgent_module_stop_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",module_version="1.0",ms_telemetry="True"} 1
+edgeAgent_module_stop_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",module_version="",ms_telemetry="True"} 1
+# HELP edgeAgent_total_disk_read_bytes The amount of bytes read from the disk
+# TYPE edgeAgent_total_disk_read_bytes gauge
+edgeAgent_total_disk_read_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 208901
+edgeAgent_total_disk_read_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 2658354
+edgeAgent_total_disk_read_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="False"} 622602
+edgeAgent_total_disk_read_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="False"} 147461
+edgeAgent_total_disk_read_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 54457381
+# HELP edgeAgent_unsuccessful_iothub_syncs_total The amount of times edgeAgent failed to sync with iotHub
+# TYPE edgeAgent_unsuccessful_iothub_syncs_total counter
+# HELP edgeAgent_total_network_in_bytes The amount of bytes recieved from the network
+# TYPE edgeAgent_total_network_in_bytes gauge
+edgeAgent_total_network_in_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 1558569
+edgeAgent_total_network_in_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 38423
+edgeAgent_total_network_in_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="False"} 270719
+edgeAgent_total_network_in_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="False"} 56954
+edgeAgent_total_network_in_bytes{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 38852
+# HELP edgeAgent_total_time_running_correctly_seconds The amount of time the module was specified in the deployment and was in the running state
+# TYPE edgeAgent_total_time_running_correctly_seconds gauge
+edgeAgent_total_time_running_correctly_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="metrics",ms_telemetry="False"} 2379.3785409
+edgeAgent_total_time_running_correctly_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="echo",ms_telemetry="False"} 4283.066775
+edgeAgent_total_time_running_correctly_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeAgent",ms_telemetry="True"} 4464.9500308
+edgeAgent_total_time_running_correctly_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="edgeHub",ms_telemetry="True"} 4283.0666389
+edgeAgent_total_time_running_correctly_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="741177ec-71b9-42af-90e9-38f4d6ea6ecc",module_name="dm",ms_telemetry="False"} 4283.0666285

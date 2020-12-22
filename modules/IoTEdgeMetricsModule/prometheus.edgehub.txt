@@ -1,0 +1,46 @@
+# HELP edgehub_reported_properties_update_duration_seconds Time taken to update reported properties
+# TYPE edgehub_reported_properties_update_duration_seconds summary
+edgehub_reported_properties_update_duration_seconds_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",target="upstream",id="uno2372g/$edgeHub"} 2.7337405000000006
+edgehub_reported_properties_update_duration_seconds_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",target="upstream",id="uno2372g/$edgeHub"} 18
+edgehub_reported_properties_update_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",target="upstream",id="uno2372g/$edgeHub",quantile="0.1"} 0.1313181
+edgehub_reported_properties_update_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",target="upstream",id="uno2372g/$edgeHub",quantile="0.5"} 0.1313181
+edgehub_reported_properties_update_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",target="upstream",id="uno2372g/$edgeHub",quantile="0.9"} 0.141241
+edgehub_reported_properties_update_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",target="upstream",id="uno2372g/$edgeHub",quantile="0.99"} 0.141241
+# HELP edgehub_offline_count_total EdgeHub offline count
+# TYPE edgehub_offline_count_total counter
+# HELP edgehub_message_send_duration_seconds Time taken to send a message
+# TYPE edgehub_message_send_duration_seconds summary
+# HELP edgehub_gettwin_duration_seconds Time taken to get twin
+# TYPE edgehub_gettwin_duration_seconds summary
+edgehub_gettwin_duration_seconds_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",source="upstream",id="uno2372g/$edgeHub"} 0.24314200000000002
+edgehub_gettwin_duration_seconds_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",source="upstream",id="uno2372g/$edgeHub"} 2
+edgehub_gettwin_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",source="upstream",id="uno2372g/$edgeHub",quantile="0.1"} 0.0209853
+edgehub_gettwin_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",source="upstream",id="uno2372g/$edgeHub",quantile="0.5"} 0.0209853
+edgehub_gettwin_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",source="upstream",id="uno2372g/$edgeHub",quantile="0.9"} 0.0209853
+edgehub_gettwin_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",source="upstream",id="uno2372g/$edgeHub",quantile="0.99"} 0.0209853
+# HELP edgehub_messages_dropped_total Messages cleaned up because of TTL expired
+# TYPE edgehub_messages_dropped_total counter
+# HELP edgehub_offline_duration_seconds EdgeHub offline time
+# TYPE edgehub_offline_duration_seconds summary
+edgehub_offline_duration_seconds_sum{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",id="uno2372g/$edgeHub",ms_telemetry="True"} 2.53
+edgehub_offline_duration_seconds_count{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",id="uno2372g/$edgeHub",ms_telemetry="True"} 1
+edgehub_offline_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",id="uno2372g/$edgeHub",ms_telemetry="True",quantile="0.1"} NaN
+edgehub_offline_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",id="uno2372g/$edgeHub",ms_telemetry="True",quantile="0.5"} NaN
+edgehub_offline_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",id="uno2372g/$edgeHub",ms_telemetry="True",quantile="0.9"} NaN
+edgehub_offline_duration_seconds{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",id="uno2372g/$edgeHub",ms_telemetry="True",quantile="0.99"} NaN
+# HELP edgehub_direct_method_duration_seconds Time taken to call direct method
+# TYPE edgehub_direct_method_duration_seconds summary
+# HELP edgehub_gettwin_total Get twin calls
+# TYPE edgehub_gettwin_total counter
+edgehub_gettwin_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",source="upstream",id="uno2372g/$edgeHub",ms_telemetry="True"} 2
+# HELP edgehub_messages_sent_total Messages sent from edge hub
+# TYPE edgehub_messages_sent_total counter
+# HELP edgehub_client_connect_failed_total Client connection failure
+# TYPE edgehub_client_connect_failed_total counter
+edgehub_client_connect_failed_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",id="uno2372g/dm",reason="not_authenticated",ms_telemetry="True"} 1
+edgehub_client_connect_failed_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",id="uno2372g/echo",reason="not_authenticated",ms_telemetry="True"} 1
+# HELP edgehub_message_process_duration_seconds Time taken to process message in EdgeHub
+# TYPE edgehub_message_process_duration_seconds summary
+# HELP edgehub_reported_properties_total Reported properties update calls
+# TYPE edgehub_reported_properties_total counter
+edgehub_reported_properties_total{iothub="edgedemo-ih.azure-devices.net",edge_device="uno2372g",instance_number="8532357c-8e78-43b4-a21d-9b5470695881",target="upstream",id="uno2372g/$edgeHub",ms_telemetry="True"} 18
