@@ -12,10 +12,19 @@ namespace IoTEdgeMetricsModule
     using Microsoft.Azure.Devices.Client;
     using Microsoft.Azure.Devices.Client.Transport.Mqtt;
     using System.Text.RegularExpressions;
-
+    using Microsoft.Azure.Devices.Shared;
+    using Newtonsoft.Json;
+    using System.Collections.Generic;
+    using System.Linq;
 
     class Program
     {
+        private static bool DefaultEdgeHubMetricsVisible = false;
+
+        private static bool DefaultEdgeAgentMetricsVisible = false;
+
+        private static int Defaultinteval = 10000;
+
         static void Main(string[] args)
         {
             Init().Wait();
@@ -48,6 +57,14 @@ namespace IoTEdgeMetricsModule
 
             // Open a connection to the Edge runtime
             ModuleClient ioTHubModuleClient = await ModuleClient.CreateFromEnvironmentAsync(settings);
+
+            // Attach callback for Twin desired properties updates
+            await ioTHubModuleClient.SetDesiredPropertyUpdateCallbackAsync(onDesiredPropertiesUpdate, ioTHubModuleClient);
+
+            // Execute callback method for Twin desired properties updates
+            var twin = await ioTHubModuleClient.GetTwinAsync();
+            await onDesiredPropertiesUpdate(twin.Properties.Desired, ioTHubModuleClient);
+
             await ioTHubModuleClient.OpenAsync();
             Console.WriteLine("IoT Hub module client initialized.");
 
@@ -71,8 +88,11 @@ namespace IoTEdgeMetricsModule
             {
                 try
                 {
-                    // System.Console.WriteLine("Loop execution EDGEHUB START");
-                    // System.Console.WriteLine("============================");
+                    if (EdgeHubMetricsVisible)
+                    {
+                        System.Console.WriteLine("Loop execution EDGEHUB START");
+                        System.Console.WriteLine("============================");
+                    }
 
                     using var httpClientEH = new HttpClient();
                      
@@ -84,14 +104,19 @@ namespace IoTEdgeMetricsModule
 
                     var jsonStringEH = await resEH.Content.ReadAsStringAsync();
 
-                    // System.Console.WriteLine($"Response: {jsonStringEH}");
-                    // System.Console.WriteLine("==========================");
-                    // System.Console.WriteLine("Loop execution EDGEHUB END");
+                    if (EdgeHubMetricsVisible)
+                    {
+                        System.Console.WriteLine($"Response: {jsonStringEH}");
+                        System.Console.WriteLine("==========================");
+                        System.Console.WriteLine("Loop execution EDGEHUB END");
+                        Console.WriteLine();
+                    }
 
-                    Console.WriteLine();
-
-                    // System.Console.WriteLine("Loop execution EDGEAGENT START");
-                    // System.Console.WriteLine("==============================");
+                    if (EdgeAgentMetricsVisible)
+                    {
+                        System.Console.WriteLine("Loop execution EDGEAGENT START");
+                        System.Console.WriteLine("==============================");
+                    }
 
                     using var httpClientEA = new HttpClient();
                      
@@ -103,75 +128,328 @@ namespace IoTEdgeMetricsModule
 
                     var jsonStringEA = await resEA.Content.ReadAsStringAsync();
 
-                    // System.Console.WriteLine($"Response: {jsonStringEA}");
-                    // System.Console.WriteLine("============================");
-                    // System.Console.WriteLine("Loop execution EDGEAGENT END");
+                    if (EdgeAgentMetricsVisible)
+                    {
+                        System.Console.WriteLine($"Response: {jsonStringEA}");
+                        System.Console.WriteLine("============================");
+                        System.Console.WriteLine("Loop execution EDGEAGENT END");
+                    }
 
-                    ShowMetrics(jsonStringEH, jsonStringEA);
+                    var metrics = ConstructMetrics(jsonStringEH, jsonStringEA);
+
+                    var jsonMessage = JsonConvert.SerializeObject(metrics);
+
+                    System.Console.WriteLine($"Sent: {jsonMessage}");
+
+                    using (var message = new Message(Encoding.UTF8.GetBytes(jsonMessage)))
+                    { 
+                        // Set message body type and content encoding for routing using decoded body values.
+                        message.ContentEncoding = "utf-8";
+                        message.ContentType = "application/json";
+
+                        message.Properties.Add("messageType", "metrics");
+
+                        try
+                        {
+                            await client.SendEventAsync("output1", message);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Exception '{ex.Message}' while sending output message '{jsonMessage}'");
+                        }
+                    }
+
                 }
                 catch (System.Exception ex)
                 {  
                     System.Console.WriteLine($"Exception: {ex.Message}");
                 }
 
-                await Task.Delay(10000);
+                await Task.Delay(Interval);
             }
         }
 
-        public static void ShowMetrics(string inputEdgeHub, string inputEdgeAgent)
+        public static Metrics ConstructMetrics(string inputEdgeHub, string inputEdgeAgent)
         {
-            string patternReceivedTotal = @"edgehub_messages_received_total{[\.a-zA-Z""=_,0-9\/-]*id=""([\.a-zA-Z0-9\/]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
-            
+            var deviceId = System.Environment.GetEnvironmentVariable("IOTEDGE_DEVICEID");
+
+            var metrics = new Metrics();
+
             RegexOptions options = RegexOptions.Multiline;
 
-            foreach (Match m in Regex.Matches(inputEdgeHub, patternReceivedTotal, options))
+            try
             {
-                Console.WriteLine($"edgehub_messages_received_total from module '{m.Groups[1]}': {m.Groups[2]}");
+                string patternReceivedTotal = @"edgehub_messages_received_total{[\.a-zA-Z""=_,0-9\/-]*id=""([\.a-zA-Z0-9\/]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
+                
+                foreach (Match m in Regex.Matches(inputEdgeHub, patternReceivedTotal, options))
+                {
+                    var moduleName = m.Groups[1].Value;
+                    moduleName = moduleName.Replace(deviceId, "");
+                    moduleName = moduleName.Replace("/", "");
+
+                    var count = Convert.ToInt32( m.Groups[2].Value);
+
+                    Console.WriteLine($"edgehub_messages_received_total from module '{moduleName}': {count}");
+
+                    metrics.Modules.Add(new Module{Name = moduleName, MessagesRecievedCount = count});
+                }
+
+                string patternSentTotalPerModule = @"edgehub_messages_sent_total{[\.a-zA-Z""=_,0-9\/-]*,from=""([a-zA-Z0-9\/]*)"",to=""upstream""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
+
+                foreach (Match m in Regex.Matches(inputEdgeHub, patternSentTotalPerModule, options))
+                {
+                    var moduleName = m.Groups[1].Value;
+                    moduleName = moduleName.Replace(deviceId, "");
+                    moduleName = moduleName.Replace("/", "");
+
+                    var count = Convert.ToInt32( m.Groups[2].Value);
+
+                    Console.WriteLine($"edgehub_messages_sent_total to UPSTREAM: '{m.Groups[1]}': {m.Groups[2]}");
+
+                    var module = metrics.Modules.FirstOrDefault(x => x.Name == moduleName);
+
+                    if (module != null)
+                    {
+                        module.MessagesSentCount = count;
+                    }
+                }
+            }
+            catch (Exception exEh)
+            {
+                System.Console.WriteLine($"Exception found: {exEh.ToString()}");
+                System.Console.WriteLine($"in:");
+                System.Console.WriteLine(inputEdgeHub);
+                System.Console.WriteLine();
             }
 
-            string patternSentTotalPerModule = @"edgehub_messages_sent_total{[\.a-zA-Z""=_,0-9\/-]*,from=""([a-zA-Z0-9\/]*)"",to=""upstream""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
-
-            foreach (Match m in Regex.Matches(inputEdgeHub, patternSentTotalPerModule, options))
+            try
             {
-                Console.WriteLine($"edgehub_messages_sent_total to UPSTREAM: '{m.Groups[1]}': {m.Groups[2]}");
+                // Disk size, door 1024 delen om zelfde waarde te krijgen
+                
+                string patternDiskSizeLeft = @"edgeAgent_available_disk_space_bytes{[\.a-zA-Z""=_,0-9\/-]*disk_name=""([a-z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
+
+                foreach (Match m in Regex.Matches(inputEdgeAgent, patternDiskSizeLeft, options))
+                {
+                    var size = Convert.ToDouble(m.Groups[2].Value) / 1024;
+
+                    var diskName = m.Groups[1].Value;
+
+                    Console.WriteLine($"edgeAgent_available_disk_space_bytes - Disk size left for Disk: '{diskName}': {size}");
+
+                    metrics.Disks.Add(new Disk{Name = diskName, Free = size });
+                }
+
+                string patternDiskSizeTotal = @"edgeAgent_total_disk_space_bytes{[\.a-zA-Z""=_,0-9\/-]*disk_name=""([a-z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
+
+                foreach (Match m in Regex.Matches(inputEdgeAgent, patternDiskSizeTotal, options))
+                {
+                    var size = Convert.ToDouble(m.Groups[2].Value) / 1024;
+
+                    var diskName = m.Groups[1].Value;
+
+                    Console.WriteLine($"edgeAgent_total_disk_space_bytes - total Disk size for Disk: '{diskName}': {size}");
+
+                    var disk = metrics.Disks.FirstOrDefault(x => x.Name == diskName);
+
+                    if (disk != null)
+                    {
+                        disk.Size = size;
+                        disk.Used = disk.Size - disk.Free;
+                    }
+                }
+
+                string patternUptime = @"edgeAgent_iotedged_uptime_seconds{[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
+
+                foreach (Match m in Regex.Matches(inputEdgeAgent, patternUptime, options))
+                {
+                    var uptime = Convert.ToInt32(m.Groups[1].Value) / 60;
+                    Console.WriteLine($"edgeAgent_iotedged_uptime_seconds: {m.Groups[1]} - {uptime} MINUTES");
+
+                    metrics.Uptime = uptime;
+                }
+
+                string patternCpuQuantile0dot99 = @"edgeAgent_used_cpu_percent{[\.a-zA-Z""=_,0-9\/-]*module_name=""([a-zA-Z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*quantile=""0.99""} ([\.\d]*)";
+
+                foreach (Match m in Regex.Matches(inputEdgeAgent, patternCpuQuantile0dot99, options))
+                {
+                    var moduleName = m.Groups[1].Value; 
+                    var perc = Convert.ToDouble(m.Groups[2].Value);
+                    Console.WriteLine($"edgeAgent_used_cpu_percent - CPU USAGE for module: '{moduleName}': {perc:N2} (Quantile 0.99)");
+
+                    var module = metrics.Modules.FirstOrDefault(x => x.Name == moduleName);
+                
+                    if (module != null)
+                    {
+                        module.Cpu099 = perc;
+                    }
+                }
+            }
+            catch (Exception exEa)
+            {
+                System.Console.WriteLine($"Exception found: {exEa.ToString()}");
+                System.Console.WriteLine($"in:");
+                System.Console.WriteLine(inputEdgeAgent);
+                System.Console.WriteLine();
             }
 
-
-            // Disk size, door 1024 delen om zelfde waarde te krijgen
-            
-            string patternDiskSizeLeft = @"edgeAgent_available_disk_space_bytes{[\.a-zA-Z""=_,0-9\/-]*disk_name=""([a-z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
-
-            foreach (Match m in Regex.Matches(inputEdgeAgent, patternDiskSizeLeft, options))
-            {
-                var size = Convert.ToDouble(m.Groups[2].Value) / 1024;
-
-                Console.WriteLine($"edgeAgent_available_disk_space_bytes - Disk size left for Disk: '{m.Groups[1]}': {size}");
-            }
-
-            string patternDiskSizeTotal = @"edgeAgent_total_disk_space_bytes{[\.a-zA-Z""=_,0-9\/-]*disk_name=""([a-z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
-
-            foreach (Match m in Regex.Matches(inputEdgeAgent, patternDiskSizeTotal, options))
-            {
-                var size = Convert.ToDouble(m.Groups[2].Value) / 1024;
-
-                Console.WriteLine($"edgeAgent_total_disk_space_bytes - total Disk size for Disk: '{m.Groups[1]}': {size}");
-            }
-
-            string patternUptime = @"edgeAgent_iotedged_uptime_seconds{[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
-
-            foreach (Match m in Regex.Matches(inputEdgeAgent, patternUptime, options))
-            {
-                Console.WriteLine($"edgeAgent_iotedged_uptime_seconds: {m.Groups[1]} - {Convert.ToInt32(m.Groups[1].Value) / 60} MINUTES");
-            }
-
-            string patternCpuQuantile0dot99 = @"edgeAgent_used_cpu_percent{[\.a-zA-Z""=_,0-9\/-]*module_name=""([a-zA-Z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*quantile=""0.99""} ([\.\d]*)";
-
-            foreach (Match m in Regex.Matches(inputEdgeAgent, patternCpuQuantile0dot99, options))
-            {
-                var perc = Convert.ToDouble(m.Groups[2].Value);
-                Console.WriteLine($"edgeAgent_used_cpu_percent - CPU USAGE for module: '{m.Groups[1]}': {perc:N2} (Quantile 0.99)");
-            }
-
+            return metrics;
         }
+
+        public static bool EdgeHubMetricsVisible { get; set; } = DefaultEdgeHubMetricsVisible;
+
+        public static bool EdgeAgentMetricsVisible { get; set; } = DefaultEdgeAgentMetricsVisible;
+
+        public static int Interval {get; set;} = Defaultinteval;
+
+        private static Task onDesiredPropertiesUpdate(TwinCollection desiredProperties, object userContext)
+        {
+            if (desiredProperties.Count == 0)
+            {
+                return Task.CompletedTask;
+            }
+
+            try
+            {
+                Console.WriteLine("Desired property change:");
+                Console.WriteLine(JsonConvert.SerializeObject(desiredProperties));
+
+                var client = userContext as ModuleClient;
+
+                if (client == null)
+                {
+                    throw new InvalidOperationException($"UserContext doesn't contain expected ModuleClient");
+                }
+
+                var reportedProperties = new TwinCollection();
+
+                if (desiredProperties.Contains("interval")) 
+                {
+                    if (desiredProperties["interval"] != null)
+                    {
+                        Interval = Convert.ToUInt32(desiredProperties["interval"]);
+                    }
+                    else
+                    {
+                        Interval = Defaultinteval;
+                    }
+
+                    Console.WriteLine($"Interval changed to {Interval}");
+
+                    reportedProperties["interval"] = Interval;
+                }
+
+                if (desiredProperties.Contains("edgeHubMetricsVisible")) 
+                {
+                    if (desiredProperties["edgeHubMetricsVisible"] != null)
+                    {
+                        var edgeHubMetricsVisible = Convert.ToBoolean(desiredProperties["edgeHubMetricsVisible"]);
+
+                        EdgeHubMetricsVisible = edgeHubMetricsVisible;
+                    }
+                    else
+                    {
+                        EdgeHubMetricsVisible = DefaultEdgeHubMetricsVisible;
+                    }
+
+                    Console.WriteLine($"EdgeHubMetricsVisible changed to {EdgeHubMetricsVisible}");
+
+                    reportedProperties["edgeHubMetricsVisible"] = EdgeHubMetricsVisible;
+                }
+
+                if (desiredProperties.Contains("edgeAgentMetricsVisible")) 
+                {
+                    if (desiredProperties["edgeAgentMetricsVisible"] != null)
+                    {
+                        var edgeAgentMetricsVisible = Convert.ToBoolean(desiredProperties["edgeAgentMetricsVisible"]);
+
+                        EdgeAgentMetricsVisible = edgeAgentMetricsVisible;
+                    }
+                    else
+                    {
+                        EdgeAgentMetricsVisible = DefaultEdgeAgentMetricsVisible;
+                    }
+
+                    Console.WriteLine($"EdgeAgentMetricsVisible changed to {EdgeAgentMetricsVisible}");
+
+                    reportedProperties["edgeAgentMetricsVisible"] = EdgeAgentMetricsVisible;
+                }
+
+                if (reportedProperties.Count > 0)
+                {
+                    client.UpdateReportedPropertiesAsync(reportedProperties).ConfigureAwait(false);
+                }
+            }
+            catch (AggregateException ex)
+            {
+                foreach (Exception exception in ex.InnerExceptions)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Error when receiving desired property: {0}", exception);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Error when receiving desired property: {0}", ex.Message);
+            }
+
+            return Task.CompletedTask;
+        }
+    }
+
+    public class Metrics
+    {
+        public Metrics()
+        {
+            Timestamp = DateTime.UtcNow;
+            Disks = new List<Disk>();
+            Modules = new List<Module>();
+        }
+
+        public DateTime Timestamp { get; set; }
+
+        public int Uptime { get; set; }
+
+        public List<Disk> Disks {get; private set;}
+
+        public List<Module> Modules {get; private set;}
+
+        public int MessagesSentCount 
+        { 
+            get
+            {
+                return Modules.Sum(x => x.MessagesSentCount);
+            } 
+        }
+
+        public int MessagesRecievedCount 
+        { 
+            get
+            {
+                return Modules.Sum(x => x.MessagesRecievedCount);
+            } 
+        }       
+    }
+
+    public class Disk
+    {
+        public string Name { get; set; }
+
+        public double Size { get; set; }
+
+        public double Used { get; set; }
+
+        public double Free { get; set; }
+    }
+
+    public class Module
+    {
+        public string Name { get; set; }
+
+        public double Cpu099 { get; set; }
+
+        public int MessagesSentCount { get; set; }
+
+        public int MessagesRecievedCount { get; set; }
     }
 }

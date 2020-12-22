@@ -1,0 +1,40 @@
+{
+    "Timestamp": "2020-12-22T17:10:32.2379244Z",
+    "Uptime": 63,
+    "Disks": [
+        {
+            "Name": "sda2",
+            "Size": 60761956,
+            "Used": 31196240,
+            "Free": 29565716
+        },
+        {
+            "Name": "sda1",
+            "Size": 523248,
+            "Used": 6268,
+            "Free": 516980
+        }
+    ],
+    "Modules": [
+        {
+            "Name": "hb2",
+            "Cpu099": 0.017784055065234075,
+            "MessagesSentCount": 802,
+            "MessagesRecievedCount": 802
+        },
+        {
+            "Name": "hb",
+            "Cpu099": 0.017890155329405463,
+            "MessagesSentCount": 801,
+            "MessagesRecievedCount": 801
+        },
+        {
+            "Name": "metrics",
+            "Cpu099": 0.04907476809439302,
+            "MessagesSentCount": 1,
+            "MessagesRecievedCount": 1
+        }
+    ],
+    "MessagesSentCount": 1604,
+    "MessagesRecievedCount": 1604
+}
