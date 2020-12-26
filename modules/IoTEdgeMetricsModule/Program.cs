@@ -23,6 +23,8 @@ namespace IoTEdgeMetricsModule
 
         private static bool DefaultEdgeAgentMetricsVisible = false;
 
+        private static bool DefaultEnableSendMessages = false;
+
         private static int Defaultinteval = 10000;
 
         static void Main(string[] args)
@@ -139,24 +141,31 @@ namespace IoTEdgeMetricsModule
 
                     var jsonMessage = JsonConvert.SerializeObject(metrics);
 
-                    System.Console.WriteLine($"Sent: {jsonMessage}");
+                    if (EnableSendMessages)
+                    {
+                        System.Console.WriteLine($"Sent: {jsonMessage}");
 
-                    using (var message = new Message(Encoding.UTF8.GetBytes(jsonMessage)))
-                    { 
-                        // Set message body type and content encoding for routing using decoded body values.
-                        message.ContentEncoding = "utf-8";
-                        message.ContentType = "application/json";
+                        using (var message = new Message(Encoding.UTF8.GetBytes(jsonMessage)))
+                        { 
+                            // Set message body type and content encoding for routing using decoded body values.
+                            message.ContentEncoding = "utf-8";
+                            message.ContentType = "application/json";
 
-                        message.Properties.Add("messageType", "metrics");
+                            message.Properties.Add("messageType", "metrics");
 
-                        try
-                        {
-                            await client.SendEventAsync("output1", message);
+                            try
+                            {
+                                await client.SendEventAsync("output1", message);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Exception '{ex.Message}' while sending output message '{jsonMessage}'");
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Exception '{ex.Message}' while sending output message '{jsonMessage}'");
-                        }
+                    }
+                    else
+                    {
+                        System.Console.WriteLine($"Constructed: {jsonMessage}");
                     }
 
                 }
@@ -296,6 +305,8 @@ namespace IoTEdgeMetricsModule
 
         public static int Interval {get; set;} = Defaultinteval;
 
+        public static bool EnableSendMessages {get; set;} = DefaultEnableSendMessages;
+
         private static Task onDesiredPropertiesUpdate(TwinCollection desiredProperties, object userContext)
         {
             if (desiredProperties.Count == 0)
@@ -331,6 +342,25 @@ namespace IoTEdgeMetricsModule
                     Console.WriteLine($"Interval changed to {Interval}");
 
                     reportedProperties["interval"] = Interval;
+                }
+
+
+                if (desiredProperties.Contains("enableSendMessages")) 
+                {
+                    if (desiredProperties["enableSendMessages"] != null)
+                    {
+                        var enableSendMessages = Convert.ToBoolean(desiredProperties["enableSendMessages"]);
+
+                        EnableSendMessages = enableSendMessages;
+                    }
+                    else
+                    {
+                        EnableSendMessages = DefaultEnableSendMessages;
+                    }
+
+                    Console.WriteLine($"EnableSendMessages changed to {EnableSendMessages}");
+
+                    reportedProperties["enableSendMessages"] = EnableSendMessages;
                 }
 
                 if (desiredProperties.Contains("edgeHubMetricsVisible")) 
