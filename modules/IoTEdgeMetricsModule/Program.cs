@@ -70,7 +70,6 @@ namespace IoTEdgeMetricsModule
             await ioTHubModuleClient.OpenAsync();
             Console.WriteLine("IoT Hub module client initialized.");
 
-
             var thread = new Thread(() => ThreadBody(ioTHubModuleClient));
             thread.Start();
         }
