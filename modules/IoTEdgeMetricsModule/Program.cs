@@ -20,7 +20,7 @@ namespace IoTEdgeMetricsModule
 
         private static bool DefaultEnableSendMessages = false;
 
-        private static int Defaultinteval = 10000;
+        private static int DefaultInterval = 10000;
 
         static void Main(string[] args)
         {
@@ -319,7 +319,7 @@ namespace IoTEdgeMetricsModule
 
         public static bool EdgeAgentMetricsVisible { get; set; } = DefaultEdgeAgentMetricsVisible;
 
-        public static int Interval {get; set;} = Defaultinteval;
+        public static int Interval {get; set;} = DefaultInterval;
 
         public static bool EnableSendMessages {get; set;} = DefaultEnableSendMessages;
 
@@ -352,7 +352,7 @@ namespace IoTEdgeMetricsModule
                     }
                     else
                     {
-                        Interval = Defaultinteval;
+                        Interval = DefaultInterval;
                     }
 
                     Console.WriteLine($"Interval changed to {Interval}");
