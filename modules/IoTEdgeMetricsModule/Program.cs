@@ -187,6 +187,8 @@ namespace IoTEdgeMetricsModule
 
             try
             {
+                //// Total received messages from modules by the edgehub 
+
                 string patternReceivedTotal = @"edgehub_messages_received_total{[\.a-zA-Z""=_,0-9\/-]*id=""([\.a-zA-Z0-9\/]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
                 
                 foreach (Match m in Regex.Matches(inputEdgeHub, patternReceivedTotal, options))
@@ -199,8 +201,11 @@ namespace IoTEdgeMetricsModule
 
                     Console.WriteLine($"edgehub_messages_received_total from module '{moduleName}': {count}");
 
+                    // we add add modules which send messages to the edge hub
                     metrics.Modules.Add( moduleName, new Module{MessagesRecievedCount = count});
                 }
+
+                //// Total sent messages to the cloud by the edgehub
 
                 string patternSentTotalPerModule = @"edgehub_messages_sent_total{[\.a-zA-Z""=_,0-9\/-]*,from=""([a-zA-Z0-9\/]*)"",to=""upstream""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
 
@@ -230,7 +235,7 @@ namespace IoTEdgeMetricsModule
 
             try
             {
-                // Disk size, door 1024 delen om zelfde waarde te krijgen
+                //// Available disk size, devided by 1024 to get the same values as what 'linux df' is showing
                 
                 string patternDiskSizeLeft = @"edgeAgent_available_disk_space_bytes{[\.a-zA-Z""=_,0-9\/-]*disk_name=""([a-z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
 
@@ -242,8 +247,11 @@ namespace IoTEdgeMetricsModule
 
                     Console.WriteLine($"edgeAgent_available_disk_space_bytes - Disk size left for Disk: '{diskName}': {size}");
 
+                    // we only add disks
                     metrics.Disks.Add(diskName, new Disk{Free = size });
                 }
+
+                //// Total disk size
 
                 string patternDiskSizeTotal = @"edgeAgent_total_disk_space_bytes{[\.a-zA-Z""=_,0-9\/-]*disk_name=""([a-z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
 
@@ -255,6 +263,7 @@ namespace IoTEdgeMetricsModule
 
                     Console.WriteLine($"edgeAgent_total_disk_space_bytes - total Disk size for Disk: '{diskName}': {size}");
 
+                    // we only append
                     if (metrics.Disks.ContainsKey(diskName))
                     {
                         var disk = metrics.Disks[diskName];
@@ -262,6 +271,8 @@ namespace IoTEdgeMetricsModule
                         disk.Used = disk.Size - disk.Free;
                     }
                 }
+
+                //// uptime of host (not the edgeAgent)
 
                 string patternUptime = @"edgeAgent_iotedged_uptime_seconds{[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
 
@@ -273,6 +284,8 @@ namespace IoTEdgeMetricsModule
                     metrics.Uptime = uptime;
                 }
 
+                //// CPU percentage used by each module
+
                 string patternCpuQuantile0dot99 = @"edgeAgent_used_cpu_percent{[\.a-zA-Z""=_,0-9\/-]*module_name=""([a-zA-Z0-9]*)""[\.a-zA-Z""=_,0-9\/-]*quantile=""0.99""} ([\.\d]*)";
 
                 foreach (Match m in Regex.Matches(inputEdgeAgent, patternCpuQuantile0dot99, options))
@@ -281,9 +294,14 @@ namespace IoTEdgeMetricsModule
                     var perc = Convert.ToDouble(m.Groups[2].Value);
                     Console.WriteLine($"edgeAgent_used_cpu_percent - CPU USAGE for module: '{moduleName}': {perc:N2} (Quantile 0.99)");
 
+                    // We add ALL modules
                     if (metrics.Modules.ContainsKey(moduleName))
                     {
                         metrics.Modules[moduleName].Cpu099 = Math.Round(perc, 2, MidpointRounding.AwayFromZero);
+                    } 
+                    else
+                    {
+                        metrics.Modules.Add(moduleName, new Module{Cpu099 = Math.Round(perc, 2, MidpointRounding.AwayFromZero)});
                     }
                 }
             }
