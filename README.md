@@ -68,4 +68,8 @@ The latest property changes are reported back in the reported properties.
 
 ## Contributions
 
-Contributions are welcome. Issues are appriciated, pull requests are stellar!
+The sourcecode is available [here](https://github.com/iot-edge-foundation/iot-edge-metrics/).
+
+The Docker module is available [here](https://hub.docker.com/repository/docker/svelde/iot-edge-metrics)
+
+Contributions are welcome. Issues are appreciated, pull requests are stellar!
