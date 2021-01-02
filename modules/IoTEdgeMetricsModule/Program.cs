@@ -271,7 +271,7 @@ namespace IoTEdgeMetricsModule
                     }
                 }
 
-                //// uptime of host (not the edgeAgent)
+                //// uptime of host (in minutes) (not the edgeAgent)
 
                 string patternUptime = @"edgeAgent_iotedged_uptime_seconds{[\.a-zA-Z""=_,0-9\/-]*} (\d*)";
 

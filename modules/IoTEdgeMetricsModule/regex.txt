@@ -1,0 +1,24 @@
+//// Total received messages from modules by the edgehub
+edgehub_messages_received_total{[\.a-zA-Z""=_,0-9\/-]*id="([\.a-zA-Z0-9\/]*)"[\.a-zA-Z""=_,0-9\/-]*} (\d*)
+
+
+//// Total sent messages to the cloud by the edgehub
+edgehub_messages_sent_total{[\.a-zA-Z""=_,0-9\/-]*,from="([a-zA-Z0-9\/]*)",to="upstream"[\.a-zA-Z""=_,0-9\/-]*} (\d*)
+
+
+//// Available disk size, devided by 1024 to get the same values as what 'linux df' is showing
+edgeAgent_available_disk_space_bytes{[\.a-zA-Z""=_,0-9\/-]*disk_name="([a-z0-9]*)"[\.a-zA-Z""=_,0-9\/-]*} (\d*)
+
+
+//// Total disk size
+edgeAgent_total_disk_space_bytes{[\.a-zA-Z""=_,0-9\/-]*disk_name="([a-z0-9]*)"[\.a-zA-Z""=_,0-9\/-]*} (\d*)
+
+
+//// uptime of host in seconds (not the edgeAgent)
+edgeAgent_iotedged_uptime_seconds{[\.a-zA-Z""=_,0-9\/-]*} (\d*)
+
+
+//// CPU percentage used by each module
+edgeAgent_used_cpu_percent{[\.a-zA-Z""=_,0-9\/-]*module_name="([a-zA-Z0-9]*)"[\.a-zA-Z""=_,0-9\/-]*quantile="0.99"} ([\.\d]*)
+
+
