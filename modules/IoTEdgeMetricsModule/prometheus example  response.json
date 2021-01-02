@@ -1,0 +1,59 @@
+edgehub_messages_received_total from module 'hb': 210
+edgehub_messages_sent_total to UPSTREAM: 'uno2372g/hb': 210
+edgeAgent_available_disk_space_bytes - Disk size left for Disk: 'sda2': 29576108
+edgeAgent_available_disk_space_bytes - Disk size left for Disk: 'sda1': 516980
+edgeAgent_total_disk_space_bytes - total Disk size for Disk: 'sda2': 60761956
+edgeAgent_total_disk_space_bytes - total Disk size for Disk: 'sda1': 523248
+edgeAgent_iotedged_uptime_seconds: 4106 - 68 MINUTES
+edgeAgent_used_cpu_percent - CPU USAGE for module: 'hb': 0.02 (Quantile 0.99)
+edgeAgent_used_cpu_percent - CPU USAGE for module: 'edgeAgent': 0.16 (Quantile 0.99)
+edgeAgent_used_cpu_percent - CPU USAGE for module: 'host': 1.06 (Quantile 0.99)
+edgeAgent_used_cpu_percent - CPU USAGE for module: 'metrics': 0.04 (Quantile 0.99)
+edgeAgent_used_cpu_percent - CPU USAGE for module: 'edgeHub': 0.12 (Quantile 0.99)
+Constructed: 
+
+
+{
+    "Timestamp":"2021-01-02T14:10:49.7778998Z",
+    "Uptime":68,
+    "Disks":{
+        "sda2":{
+            "Size":60761956.0,
+            "Used":31185848.0,"Free":29576108.0
+        },
+        "sda1":{
+            "Size":523248.0,
+            "Used":6268.0,
+            "Free":516980.0
+        }
+    },
+    "Modules":{
+        "hb":{
+            "Cpu099":0.02,
+            "MessagesSentCount":210,
+            "MessagesRecievedCount":210
+        },
+        "edgeAgent":{
+            "Cpu099":0.16,
+            "MessagesSentCount":0,
+            "MessagesRecievedCount":0
+        },
+        "host":{
+            "Cpu099":1.06,
+            "MessagesSentCount":0,
+            "MessagesRecievedCount":0
+        },
+        "metrics":{
+            "Cpu099":0.04,
+            "MessagesSentCount":0,
+            "MessagesRecievedCount":0
+        },
+        "edgeHub":{
+            "Cpu099":0.12,
+            "MessagesSentCount":0,
+            "MessagesRecievedCount":0
+        }
+    },
+    "MessagesSentCount":210,
+    "MessagesRecievedCount":210
+}

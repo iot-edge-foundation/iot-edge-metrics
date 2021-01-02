@@ -1,11 +1,8 @@
 namespace IoTEdgeMetricsModule
 {
     using System;
-    using System.IO;
     using System.Net.Http;
-    using System.Runtime.InteropServices;
     using System.Runtime.Loader;
-    using System.Security.Cryptography.X509Certificates;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -14,8 +11,6 @@ namespace IoTEdgeMetricsModule
     using System.Text.RegularExpressions;
     using Microsoft.Azure.Devices.Shared;
     using Newtonsoft.Json;
-    using System.Collections.Generic;
-    using System.Linq;
 
     class Program
     {
@@ -222,6 +217,10 @@ namespace IoTEdgeMetricsModule
                     if (metrics.Modules.ContainsKey(moduleName))
                     {
                         metrics.Modules[moduleName].MessagesSentCount = count;
+                    } 
+                    else
+                    {
+                        metrics.Modules.Add( moduleName, new Module{MessagesSentCount = count});
                     }
                 }
             }
@@ -263,7 +262,7 @@ namespace IoTEdgeMetricsModule
 
                     Console.WriteLine($"edgeAgent_total_disk_space_bytes - total Disk size for Disk: '{diskName}': {size}");
 
-                    // we only append
+                    // we only append disks
                     if (metrics.Disks.ContainsKey(diskName))
                     {
                         var disk = metrics.Disks[diskName];
@@ -437,57 +436,5 @@ namespace IoTEdgeMetricsModule
 
             return Task.CompletedTask;
         }
-    }
-
-    public class Metrics
-    {
-        public Metrics()
-        {
-            Timestamp = DateTime.UtcNow;
-            Disks = new Dictionary<string, Disk>();
-            Modules = new Dictionary<string, Module>();
-        }
-
-        public DateTime Timestamp { get; set; }
-
-        public int Uptime { get; set; }
-
-        public Dictionary<string, Disk> Disks {get; private set;}
-
-        public Dictionary<string, Module> Modules {get; private set;}
-
-        public int MessagesSentCount 
-        { 
-            get
-            {
-                return Modules.Sum(x => x.Value.MessagesSentCount);
-            } 
-        }
-
-        public int MessagesRecievedCount 
-        { 
-            get
-            {
-                return Modules.Sum(x => x.Value.MessagesRecievedCount);
-            } 
-        }       
-    }
-
-    public class Disk
-    {
-        public double Size { get; set; }
-
-        public double Used { get; set; }
-
-        public double Free { get; set; }
-    }
-
-    public class Module
-    {
-        public double Cpu099 { get; set; }
-
-        public int MessagesSentCount { get; set; }
-
-        public int MessagesRecievedCount { get; set; }
     }
 }
