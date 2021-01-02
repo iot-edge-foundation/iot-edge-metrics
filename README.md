@@ -73,3 +73,7 @@ The sourcecode is available [here](https://github.com/iot-edge-foundation/iot-ed
 The Docker module is available [here](https://hub.docker.com/repository/docker/svelde/iot-edge-metrics)
 
 Contributions are welcome. Issues are appreciated, pull requests are stellar!
+
+## Blog
+
+More details about how to use this blog are seen in this [blog](https://sandervandevelde.wordpress.com/2021/01/02/azure-iot-edge-module-metrics-in-action/).
