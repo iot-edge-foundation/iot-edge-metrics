@@ -13,7 +13,8 @@ The following output message is sent:
     "Disks":{
         "sda2":{
             "Size":60761956.0,
-            "Used":31185848.0,"Free":29576108.0
+            "Used":31185848.0,
+            "Free":29576108.0
         },
         "sda1":{
             "Size":523248.0,
